@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  --color-navbar: #2a2a2a;
+  --color-navbar-panel: #3a3a3a;
+  --color-body: #1e1e1e;
+  --color-text: #ffffff;
+  --color-icon: #ffffff;
+  --color-hover: #ffffff;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --color-navbar: #2a2a2a;
+  --color-navbar-panel: #3a3a3a;
+  --color-body: #1e1e1e;
+  --color-text: #ffffff;
+  --color-icon: #ffffff;
+  --color-hover: #ffffff;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --color-navbar: #f5f5f5;
+  --color-navbar-panel: #e5e5e5;
+  --color-body: #ffffff;
+  --color-text: #000000;
+  --color-icon: #000000;
+  --color-hover: #000000;
+}
+
+body {
+  background-color: var(--color-body);
+  color: var(--color-text);
+  overflow: hidden;
+}
+
+
+.btn {
+  @apply bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 cursor-pointer;
+}
+
+.input {
+  @apply border border-gray-300 rounded-2xl px-2 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.appIcon {
+  @apply border-2 border-gray-300 rounded-2xl focus:outline-none w-40 h-40;
+}
+
+
+/* colors */
+.blue {
+  @apply bg-blue-600 hover:bg-blue-700;
+}
+
+.red {
+  @apply bg-red-600 hover:bg-red-700;
+}
+
+.disabled {
+  @apply bg-blue-600 hover:bg-blue-700 brightness-50;
+}

@@ -12,13 +12,12 @@ import { Games } from "./pages/Games.jsx";
 import { Apps } from "./pages/Apps.jsx";
 import { Settings } from "./pages/Settings.jsx";
 import { Login } from "./pages/Login.jsx";
-import { Signup } from "./pages/Signup.jsx";
 
 function Layout({ children, loggedIn }) {
   const location = useLocation();
 
-  const hideNavbar = location.pathname === "/login" || location.pathname === "/signup";
-  const hideLoginWall = location.pathname === "/login" || location.pathname ==="/signup" || loggedIn;
+  const hideNavbar = location.pathname === "/login";
+  const hideLoginWall = loggedIn || location.pathname === "/login";
 
   return (
     <>
@@ -38,10 +37,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/games" element={<Games />} />
           <Route path="/apps" element={<Apps />} />
-          <Route path="/settings" element={<Settings setLoggedIn={setLoggedIn} />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </Layout>
     </BrowserRouter>
@@ -52,5 +50,5 @@ function App() {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />
-  </StrictMode>
+  </StrictMode>,
 );

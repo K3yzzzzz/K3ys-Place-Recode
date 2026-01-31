@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import reactImg from "../assets/react.svg";
 import viteImg from "../assets/vite.svg";
@@ -14,25 +13,7 @@ const DEFAULT_SETTINGS = {
   selectedTab: "general",
 };
 
-// make more secure later
-const BlurredEmail = ({ email }) => {
-  const [name, domain] = email.split("@");
-
-  return (
-    <span>
-      <span className="blur-xs no-copy">{name}</span>
-      <span>@{domain}</span>
-    </span>
-  );
-};
-
-const BlurredPassword = ({ length }) => {
-  return <span className="blur-xs no-copy">{"a".repeat(length)}</span>;
-};
-
-export function Settings({ setLoggedIn }) {
-  const navigate = useNavigate();
-
+export function Settings() {
   const [settings, setSettings] = useState(() => {
     const saved = localStorage.getItem("userAppliedSettings");
     return saved
@@ -70,7 +51,7 @@ export function Settings({ setLoggedIn }) {
     <div className="grid grid-cols-7 divide-x-3 divide-(--color-navbar) h-screen w-screen">
       <div className="col-span-1 p-3 flex flex-col gap-4 mt-10 mb-10">
         {/* Settings tabs */}
-        {["general", "account", "themes"].map((tab) => (
+        {["general", "themes"].map((tab) => (
           <label
             key={tab}
             className="flex items-center justify-center rounded-lg basis-10 cursor-pointer hover:bg-(--color-hover)/5"
@@ -142,27 +123,6 @@ export function Settings({ setLoggedIn }) {
                 </label>
               ))}
             </div>
-          </div>
-        )}
-        {settings.selectedTab === "account" && (
-          <div className="p-10">
-            <h1 className="text-3xl font-bold mb-4">Account</h1>
-            {/* use icon for email? */}
-            <span>
-              Email:{" "}
-            </span> <BlurredEmail email="exampleuser@gmail.com" /> <br />
-            <span>Password: </span> <BlurredPassword length={10} /> <br />
-            <button
-              className="btn red mt-5"
-              onClick={() => {
-                navigate("/");
-                localStorage.setItem("loggedIn", "false");
-                setLoggedIn(false);
-                window.location.href = window.location.href;
-              }}
-            >
-              Log Out
-            </button>
           </div>
         )}
         {settings.selectedTab === "themes" && (
